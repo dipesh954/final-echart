@@ -582,6 +582,7 @@ export class AppComponent implements OnInit {
     minWidth: 100,
     sortable: true,
     resizable: true,
+    editable: true,
   };
   public autoGroupColumnDef: ColDef = {
     minWidth: 200,

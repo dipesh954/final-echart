@@ -9,5 +9,9 @@
   [rowData]="rowData"
   (gridReady)="onGridReady($event)"
 ></ag-grid-angular>
-
+<div>
 <div echarts [options]="chartOption" class="demo-chart"></div>
+<!-- <div id="chart-container"></div>
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+<script src="./index.js"></script></div> -->
+<div echarts [options]="option" class="demo-chart"></div>

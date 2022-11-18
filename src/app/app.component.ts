@@ -1,7 +1,7 @@
 // NOTE: Angular CLI does not support component CSS imports: angular-cli/issues/23273
 
 import { HttpClient } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 // Required feature modules are registered in app.module.ts
 import "ag-grid-enterprise";
 import {
@@ -17,12 +17,12 @@ import { EChartsOption } from "echarts";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   chartOption: EChartsOption = {
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      data: ['w1', 'w2', 'w3', 'w4'],
     },
     yAxis: {
       type: 'value',
@@ -38,23 +38,8 @@ export class AppComponent {
   public columnDefs: (ColDef | ColGroupDef)[] = [
     { field: "brand", rowGroup: true, hide: true },
     { field: "ww", rowGroup: true, hide: true },
-    { field: "region", rowGroup: true, hide: true },
-    // {
-    //   headerName: 'Brand',
-    //   minWidth: 150,
-    //   // this tells the grid what values to put into the cell
-    //   showRowGroup: 'brand',
-    //   // this tells the grid what to use to render the cell
-    //   cellRenderer: 'agGroupCellRenderer',
-    // },
-    // {
-    //   headerName: 'Region',
-    //   minWidth: 150,
-    //   showRowGroup: 'region',
-    //   cellRenderer: 'agGroupCellRenderer',
-    // },
-    // { field: 'country', rowGroup: true, hide: true },
-    // { field: 'year', rowGroup: true, hide: true },
+    { field: "region",  },
+
     // Year 2021
     {
       headerName: "2021",
@@ -605,10 +590,10 @@ export class AppComponent {
   public rowData!: GridReadyEvent[];
 
   constructor(private http: HttpClient) {}
-  option = {
+  option: EChartsOption = {
     title: {
-      text: 'Referer of a Website',
-      subtext: 'Fake Data',
+      text: 'World Wide',
+      subtext: 'Sales',
       left: 'center'
     },
     tooltip: {
@@ -624,9 +609,9 @@ export class AppComponent {
         type: 'pie',
         radius: '50%',
         data: [
-          { value: 1048, name: 'Search Engine' },
-          { value: 735, name: 'Direct' },
-          { value: 580, name: 'Email' },
+          { value: 1048, name: 'AMR' },
+          { value: 735, name: 'APAC' },
+          { value: 580, name: 'EURO' },
           { value: 484, name: 'Union Ads' },
           { value: 300, name: 'Video Ads' }
         ],
@@ -639,7 +624,7 @@ export class AppComponent {
         }
       }
     ]
-  };
+  }
   
   ngOnInit(): void {
     throw new Error("Method not implemented.");

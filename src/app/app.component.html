@@ -1,17 +1,16 @@
 <ag-grid-angular
-  style="width: 100%; height: 100%"
-  class="ag-theme-alpine"
-  [columnDefs]="columnDefs"
-  [defaultColDef]="defaultColDef"
-  [autoGroupColumnDef]="autoGroupColumnDef"
-  [groupDisplayType]="groupDisplayType"
-  [animateRows]="true"
-  [rowData]="rowData"
-  (gridReady)="onGridReady($event)"
-></ag-grid-angular>
-<div>
-<div echarts [options]="chartOption" class="demo-chart"></div>
+    style="width: 100%; height: 100%;"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [groupDisplayType]="groupDisplayType"
+    [animateRows]="true"
+    [rowData]="rowData"
+    [suppressAggFuncInHeader]="true"
+    (gridReady)="onGridReady($event)"
+  ></ag-grid-angular>
+<app-dataset></app-dataset>
 <!-- <div id="chart-container"></div>
 <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
 <script src="./index.js"></script></div> -->
-<div echarts [options]="option" class="demo-chart"></div>

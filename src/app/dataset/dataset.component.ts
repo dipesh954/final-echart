@@ -128,7 +128,7 @@ export class DatasetComponent implements OnInit {
         },
         {
           subtext: 'Q2',
-          left: '50%',
+          left: '49%',
           top: '43%',
           textAlign: 'center',
           subtextStyle: {
@@ -141,7 +141,7 @@ export class DatasetComponent implements OnInit {
         },
         {
           subtext: 'Q3',
-          left: '83.33%',
+          left: '85%',
           top: '43%',
           textAlign: 'center',
           subtextStyle: {

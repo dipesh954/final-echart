@@ -18,6 +18,8 @@ import { EChartsOption } from "echarts";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+  gridApi: any;
+  gridColumnApi: any;
 
   constructor(private http: HttpClient) {}
   public columnDefs: (ColDef | ColGroupDef)[] = [
@@ -58,19 +60,13 @@ export class AppComponent implements OnInit {
         { headerName: 'Jan', width: 90, 
              children: [
              { headerName: 'W1', field: '2021_q1_jan_w1',  width: 100,
-            filter: 'agNumberColumnFilter',
-             aggFunc: 'sum' ,  enableValue: true,
-             cellClass: "number", 
-             cellRenderer: "agAnimateShowChangeCellRenderer",   },
+            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
              { headerName: 'W2', field: '2021_q1_jan_w2',  width: 100,
-            filter: 'agNumberColumnFilter',
-             aggFunc: 'sum', columnGroupShow: 'open' },
+            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
              { headerName: 'W3', field: '2021_q1_jan_w3',  width: 100,
-            filter: 'agNumberColumnFilter',
-             aggFunc: 'sum', columnGroupShow: 'open' },
+            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
              { headerName: 'W4', field: '2021_q1_jan_w4',  width: 100,
-            filter: 'agNumberColumnFilter',
-             aggFunc: 'sum', columnGroupShow: 'open' },
+            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
             //  {
             // headerName: 'Total',
             // field: 'total', 
@@ -434,7 +430,22 @@ export class AppComponent implements OnInit {
       suppressCount: true,
     },
   };
-
+  public columnTypes: {
+    [key: string]: ColDef;
+  } = {
+    valueColumn: {
+      editable: true,
+      aggFunc: 'sum',
+      valueParser: 'Number(newValue)',
+      cellClass: 'number-cell',
+      cellRenderer: 'agAnimateShowChangeCellRenderer',
+      filter: 'agNumberColumnFilter',
+    },
+    totalColumn: {
+      cellRenderer: 'agAnimateShowChangeCellRenderer',
+      cellClass: 'number-cell',
+    },
+  };
   public groupDisplayType: RowGroupingDisplayType = 'singleColumn';
   public rowData!: GridReadyEvent[];
 
@@ -446,5 +457,8 @@ export class AppComponent implements OnInit {
     this.http
       .get<GridReadyEvent[]>("https://tvbrand.herokuapp.com/agGrid")
       .subscribe((data) => (this.rowData = data));
+      this.gridApi = params.api;
+      this.gridColumnApi = params.columnApi;
+      console.log(this.gridApi);
   }
 }

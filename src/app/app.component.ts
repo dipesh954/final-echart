@@ -62,19 +62,12 @@ export class AppComponent implements OnInit {
              { headerName: 'W1', field: '2021_q1_jan_w1',  width: 100,
             filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
              { headerName: 'W2', field: '2021_q1_jan_w2',  width: 100,
-            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
+            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn', columnGroupShow: 'open'  },
              { headerName: 'W3', field: '2021_q1_jan_w3',  width: 100,
-            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
+            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn', columnGroupShow: 'open'  },
              { headerName: 'W4', field: '2021_q1_jan_w4',  width: 100,
-            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn' },
-            //  {
-            // headerName: 'Total',
-            // field: 'total', 
-            // width: 100,
-            // filter: 'agNumberColumnFilter',
-            //  aggFunc: 'sum', columnGroupShow: 'open' },
-        ],  
-        },
+            filter: 'agNumberColumnFilter', enableValue: true, type: 'valueColumn', columnGroupShow: 'open'  },
+       ],  },
         { headerName: 'feb', field: '2021_q1_feb',  width: 90, 
               children: [
              { headerName: 'W1', field: '2021_q1_feb_w1',  width: 100,
@@ -89,12 +82,6 @@ export class AppComponent implements OnInit {
              { headerName: 'W4', field: '2021_q1_feb_w4',  width: 100,
             filter: 'agNumberColumnFilter',
              aggFunc: 'sum', columnGroupShow: 'open' },
-             {
-            headerName: 'Total',
-            field: 'total', 
-            width: 100,
-            filter: 'agNumberColumnFilter',
-             aggFunc: 'sum'},
         ], columnGroupShow: 'open' },
          { field: 'mar', width: 90, 
             children: [
@@ -102,8 +89,8 @@ export class AppComponent implements OnInit {
              { field: 'w2', width: 90, columnGroupShow: 'open' },
              { field: 'w3', width: 90, columnGroupShow: 'open',},
              { field: 'w4', width: 90, columnGroupShow: 'open',},
-            ], columnGroupShow: 'open' },
-          ], },
+        ], columnGroupShow: 'open' },
+      ], },
 
         // Quater 2 Data
 
@@ -183,10 +170,10 @@ export class AppComponent implements OnInit {
              { field: 'w2', width: 90, columnGroupShow: 'open' },
              { field: 'w3', width: 90, columnGroupShow: 'open',},
              { field: 'w4', width: 90, columnGroupShow: 'open',},
-            ], columnGroupShow: 'open' },
-          ],  columnGroupShow: 'open' },
-          ],
-        },
+           ], columnGroupShow: 'open' },
+      ],  columnGroupShow: 'open' },
+      ],
+    },
         // Year 2020
     {
       headerName: '2020',

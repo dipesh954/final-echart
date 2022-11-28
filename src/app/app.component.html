@@ -9,6 +9,8 @@
     [columnTypes]="columnTypes"
     [rowData]="rowData"
     [suppressAggFuncInHeader]="true"
+    [groupDefaultExpanded]="groupDefaultExpanded"
+    (cellValueChanged)="onCellValueChanged($event)"
     (gridReady)="onGridReady($event)"
   ></ag-grid-angular>
 <app-dataset></app-dataset>

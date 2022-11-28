@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
+import { BarChart, BarSeriesOption } from 'echarts/charts';
 
 @Component({
   selector: 'app-dataset',
@@ -13,12 +14,44 @@ export class DatasetComponent implements OnInit {
   option: any;
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    type BarLabelOption = NonNullable<EChartsOption['label']>;
+    const labelOption: BarLabelOption = {
+      show: true,
+      position: "insideBottom",
+      distance: 15,
+      align: "left",
+      verticalAlign: "middle",
+      rotate: 90,
+      formatter: "{c}  {name|{a}}",
+      fontSize: 16,
+      rich: {
+        name: {},
+      },
+    };
+
     this.options = {
-      legend: {},
       tooltip: {
-        trigger: "axis",
-        showContent: false,
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      legend: {
+        data: ['Samsung', 'Sony', 'Lg']
+      },
+      toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+          mark: { show: true },
+          dataView: { show: true, readOnly: false },
+          magicType: { show: true, type: ['line', 'bar', 'stack'] },
+          restore: { show: true },
+          saveAsImage: { show: true }
+        }
       },
       dataset: {
         source: [
@@ -29,34 +62,51 @@ export class DatasetComponent implements OnInit {
           // ['Walnut Brownie', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
         ],
       },
-      xAxis: { type: "category" },
+      xAxis:  {
+        type: 'category',
+        axisTick: { show: false, type: 'value'},
+        data: ['Q1', 'Q2', 'Q3', 'Q4']
+      },
       yAxis: { gridIndex: 0 },
       grid: { top: "55%" },
       series: [
         {
-          type: "line",
-          smooth: true,
-          seriesLayoutBy: "row",
-          emphasis: { focus: "series" },
+          name: 'Samsung',
+          type: 'bar',
+          barGap: 0,
+          label: labelOption,
+          emphasis: {
+            focus: 'series'
+          },
+          data: [320, 332, 301, 334, 390]
         },
         {
-          type: "line",
-          smooth: true,
-          seriesLayoutBy: "row",
-          emphasis: { focus: "series" },
+          name: 'Sony',
+          type: 'bar',
+          label: labelOption,
+          emphasis: {
+            focus: 'series'
+          },
+          data: [220, 182, 191, 234, 290]
         },
         {
-          type: "line",
-          smooth: true,
-          seriesLayoutBy: "row",
-          emphasis: { focus: "series" },
+          name: 'Lg',
+          type: 'bar',
+          label: labelOption,
+          emphasis: {
+            focus: 'series'
+          },
+          data: [150, 232, 201, 154, 190]
         },
-        {
-          type: "line",
-          smooth: true,
-          seriesLayoutBy: "row",
-          emphasis: { focus: "series" },
-        },
+        // {
+        //   name: 'Wetland',
+        //   type: 'bar',
+        //   label: labelOption,
+        //   emphasis: {
+        //     focus: 'series'
+        //   },
+        //   data: [98, 77, 101, 99, 40]
+        // }
 
         {
           type: "pie",
@@ -155,4 +205,5 @@ export class DatasetComponent implements OnInit {
       ],
     }
   }
+  
 }

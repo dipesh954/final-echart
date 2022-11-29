@@ -38,13 +38,7 @@ margin-bottom: 5px;
 }
 
 
-.ag-theme-alpine {
---ag-background-color: rgb(255, 255, 255);
---ag-grid-size: 3px;
---ag-list-item-height: 14px
---ag-header-height: 3px;
-font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
+
 
 .ag-theme-alpine .ag-header-cell-label {
 // font-style: italic;
@@ -66,4 +60,12 @@ letter-spacing: .012em;
 }
 .ag-grid-angular{
   height: 100px;
+}
+.ag-theme-alpine .ag-header-cell-label {
+// font-style: italic;
+color: #86868b;
+font-size: 16px;
+line-height: 1.2105263158;
+font-weight: 600;
+letter-spacing: .012em;
 }

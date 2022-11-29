@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     {
       headerName: "Brand",
       field: "brand",
-      width: 182,
+      width: 175,
       // filter: 'agTextColumnFilter',
       rowGroup: true, // this to group by athlete
       hide: true, // hide this column as you will display grouped column
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     {
       headerName: "Product",
       field: "product",
-      width: 182,
+      width: 175,
       // filter: 'agTextColumnFilter',
       rowGroup: true, // this to group by athlete
       hide: true, // hide this column as you will display grouped column
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     {
       headerName: "Ww / Region",
       colId: "wwRegionGroup",
-      minWidth: 182,
+      minWidth: 175,
       showRowGroup: "ww",
       cellRenderer: "agGroupCellRenderer",
       valueGetter: "data ? data.region : null",
@@ -635,7 +635,7 @@ export class AppComponent implements OnInit {
   ];
  
    defaultColDef: ColDef = {
-    flex: 1,
+    // flex: 1,
     minWidth: 85,
     filter: true,
     sortable: true,

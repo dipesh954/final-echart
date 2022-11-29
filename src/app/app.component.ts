@@ -5,6 +5,8 @@ import {
   CellValueChangedEvent,
   ColDef,
   ColGroupDef,
+  GridApi,
+  GridOptions,
   GridReadyEvent,
   RowGroupingDisplayType,
 } from "ag-grid-community";
@@ -16,38 +18,39 @@ import { ChartjsService } from "./chartjs.service";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  gridApi: any;
+  // gridApi: any;
   gridColumnApi: any;
-  Data: any;
-  wjCore: any;
-  subscribe: any;
+  private gridApi!: GridApi;
   constructor(private chartjsService: ChartjsService) {}
-  public columnDefs: (ColDef | ColGroupDef)[] = [
+   columnDefs: (ColDef | ColGroupDef)[] = [
     {
       headerName: "Brand",
       field: "brand",
-      width: 150,
+      width: 182,
       // filter: 'agTextColumnFilter',
       rowGroup: true, // this to group by athlete
       hide: true, // hide this column as you will display grouped column
+      pinned: 'left' 
     },
     {
       headerName: "Product",
       field: "product",
-      width: 150,
+      width: 182,
       // filter: 'agTextColumnFilter',
       rowGroup: true, // this to group by athlete
       hide: true, // hide this column as you will display grouped column
+      pinned: 'left' 
     },
     {
       headerName: "Ww / Region",
       colId: "wwRegionGroup",
-      minWidth: 220,
+      minWidth: 182,
       showRowGroup: "ww",
       cellRenderer: "agGroupCellRenderer",
       valueGetter: "data ? data.region : null",
+      pinned: 'left' 
     },
-    { field: "ww", rowGroup: true, hide: true },
+    { field: "ww", rowGroup: true, hide: true, pinned: 'left'  },
 
     // Year 2021
     {
@@ -58,16 +61,16 @@ export class AppComponent implements OnInit {
         {
           headerName: "q1",
           field: "2021_q1_jan",
-          width: 90,
+          width: 85,
           children: [
             {
               headerName: "Jan",
-              width: 90,
+              width: 85,
               children: [
                 {
                   headerName: "W1",
                   field: "2021_q1_jan_w1",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -75,7 +78,7 @@ export class AppComponent implements OnInit {
                 {
                   headerName: "W2",
                   field: "2021_q1_jan_w2",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -84,7 +87,7 @@ export class AppComponent implements OnInit {
                 {
                   headerName: "W3",
                   field: "2021_q1_jan_w3",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -93,7 +96,7 @@ export class AppComponent implements OnInit {
                 {
                   headerName: "W4",
                   field: "2021_q1_jan_w4",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -104,12 +107,12 @@ export class AppComponent implements OnInit {
             {
               headerName: "feb",
               field: "2021_q1_feb",
-              width: 90,
+              width: 85,
               children: [
                 {
                   headerName: "W1",
                   field: "2021_q1_feb_w1",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -117,7 +120,7 @@ export class AppComponent implements OnInit {
                 {
                   headerName: "W2",
                   field: "2021_q1_feb_w2",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -126,7 +129,7 @@ export class AppComponent implements OnInit {
                 {
                   headerName: "W3",
                   field: "2021_q1_feb_w3",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -135,7 +138,7 @@ export class AppComponent implements OnInit {
                 {
                   headerName: "W4",
                   field: "2021_q1_feb_w4",
-                  width: 100,
+                  width: 85,
                   filter: "agNumberColumnFilter",
                   enableValue: true,
                   type: "valueColumn",
@@ -146,12 +149,12 @@ export class AppComponent implements OnInit {
             },
             {
               field: "mar",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85 },
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -162,37 +165,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q2",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "apr",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "may",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "jun",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -204,37 +207,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q3",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "jul",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "aug",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "sep",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -246,37 +249,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q4",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "oct",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "nov",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "dec",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -293,37 +296,37 @@ export class AppComponent implements OnInit {
         // Quater 1 Data
         {
           field: "q1",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "jan",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "feb",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "mar",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -334,37 +337,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q2",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "apr",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "may",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "jun",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -376,37 +379,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q3",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "jul",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "aug",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "sep",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -418,37 +421,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q4",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "oct",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "nov",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "dec",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -465,37 +468,37 @@ export class AppComponent implements OnInit {
         // Quater 1 Data
         {
           field: "q1",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "jan",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "feb",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "mar",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -506,37 +509,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q2",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "apr",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "may",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "jun",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -548,37 +551,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q3",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "jul",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "aug",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "sep",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -590,37 +593,37 @@ export class AppComponent implements OnInit {
 
         {
           field: "q4",
-          width: 90,
+          width: 85,
           children: [
             {
               field: "oct",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
             },
             {
               field: "nov",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
             {
               field: "dec",
-              width: 90,
+              width: 85,
               children: [
-                { field: "w1", width: 90 },
-                { field: "w2", width: 90, columnGroupShow: "open" },
-                { field: "w3", width: 90, columnGroupShow: "open" },
-                { field: "w4", width: 90, columnGroupShow: "open" },
+                { field: "w1", width: 85},
+                { field: "w2", width: 85, columnGroupShow: "open" },
+                { field: "w3", width: 85, columnGroupShow: "open" },
+                { field: "w4", width: 85, columnGroupShow: "open" },
               ],
               columnGroupShow: "open",
             },
@@ -630,22 +633,35 @@ export class AppComponent implements OnInit {
       ],
     },
   ];
-  // public pivotRowTotals: 'before' | 'after' = 'before';
-  public defaultColDef: ColDef = {
+ 
+   defaultColDef: ColDef = {
     flex: 1,
-    minWidth: 100,
+    minWidth: 85,
     filter: true,
     sortable: true,
     resizable: true,
     editable: true,
   };
-  public autoGroupColumnDef: ColDef = {
+   autoGroupColumnDef: ColDef = {
     headerName: "Brand", // naming your grouped column
-    minWidth: 200,
+    minWidth: 85,
+    pinned: 'left', 
     cellRendererParams: {
       suppressCount: true,
     },
   };
+
+  gridOptions: GridOptions = {
+    columnDefs: this.columnDefs,
+    defaultColDef: this.defaultColDef,
+    autoGroupColumnDef: this.autoGroupColumnDef,
+    groupHeaderHeight: 75,
+    headerHeight: 100,
+    floatingFiltersHeight: 50,
+    pivotGroupHeaderHeight: 50,
+    pivotHeaderHeight: 100,
+  };
+
   public columnTypes: {
     [key: string]: ColDef;
   } = {
@@ -682,20 +698,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {}
 
-  
+  onFilterTextBoxChanged() {
+    this.gridApi.setQuickFilter(
+      (document.getElementById('filter-text-box') as HTMLInputElement).value
+    );
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.chartjsService.getBrandData().subscribe((data: any) => {
-      dynamicHeader(data[0])
+      // dynamicHeader(data[0])
+      
       this.rowData = data;
       console.log("dawdaw", this.rowData);
-    });
+    });this.gridApi = params.api;
   }
 }
 
-function dynamicHeader(payload: any) {
-  console.log('Haeder',payload)
-}
+// function dynamicHeader(payload: any) {
+//   console.log('Header',payload)
+// }
 
 function formatNumber(params: { value: any }) {
   var number = params.value;

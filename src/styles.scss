@@ -9,4 +9,61 @@ body {
   padding: 5px;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
+  font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+#chart-container {
+  position: relative;
+  height: 600vh;
+  overflow: hidden;
+}
+.example-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#myGrid {
+  flex: 1 1 0px;
+  width: 100%;
+}
+
+.example-header {
+  font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+font-size: 14px;
+margin-bottom: 5px;
+}
+
+
+.ag-theme-alpine {
+--ag-background-color: rgb(255, 255, 255);
+--ag-grid-size: 3px;
+--ag-list-item-height: 14px
+--ag-header-height: 3px;
+font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.ag-theme-alpine .ag-header-cell-label {
+// font-style: italic;
+color: #86868b;
+font-size: 16px;
+line-height: 1.2105263158;
+font-weight: 600;
+letter-spacing: .012em;
+}
+.ag-theme-alpine .ag-header-cell {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  margin: 0;
+  width: 65px;
+}
+.ag-grid-angular{
+  height: 100px;
 }

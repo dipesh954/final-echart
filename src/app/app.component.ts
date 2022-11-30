@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
       children: [
         // Quater 1 Data
         {
-          headerName: "q1",
+          headerName: "Q1",
           field: "2021_q1_jan",
           width: 85,
           children: [
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
               ],
             },
             {
-              headerName: "feb",
+              headerName: "Feb",
               field: "2021_q1_feb",
               width: 85,
               children: [
